@@ -33,39 +33,39 @@
 
 /* open-sans-300 */
 @font-face{
-	font-family: 'Open Sans';
+	font-family: "Open Sans";
 	font-style: normal;
 	font-weight: 300;
-	src: local('Open Sans Light'), local('OpenSans-Light'),
-			 url('../fonts/opensanslight.woff2') format('woff2'),
-			 url('../fonts/opensanslight.woff') format('woff')
+	src: local("Open Sans Light"), local("OpenSans-Light"),
+			 url("../fonts/opensanslight.woff2") format("woff2"),
+			 url("../fonts/opensanslight.woff") format("woff")
 }
 /* open-sans-regular */
 @font-face {
-	font-family: 'Open Sans';
+	font-family: "Open Sans";
 	font-style: normal;
 	font-weight: 400;
-	src: local('Open Sans Regular'), local('OpenSans-Regular'),
-			 url('../fonts/opensans.woff2') format('woff2'),
-			 url('../fonts/opensans.woff') format('woff')
+	src: local("Open Sans Regular"), local("OpenSans-Regular"),
+			 url("../fonts/opensans.woff2") format("woff2"),
+			 url("../fonts/opensans.woff") format("woff")
 }
 /* gilroy-extrabold */
 @font-face {
-	font-family: 'Gilroy';
+	font-family: "Gilroy";
 	font-style: normal;
 	font-weight: 300;
-	src: local('Gilroy Light'), local('Gilroy-Light'),
-			 url('../fonts/gilroylight.woff2') format('woff2'),
-			 url('../fonts/gilroylight.woff') format('woff')
+	src: local("Gilroy Light"), local("Gilroy-Light"),
+			 url("../fonts/gilroylight.woff2") format("woff2"),
+			 url("../fonts/gilroylight.woff") format("woff")
 	}
 /* gilroy-extrabold */
 @font-face {
-	font-family: 'Gilroy';
+	font-family: "Gilroy";
 	font-style: normal;
 	font-weight: 800;
-	src: local('Gilroy Extrabold'), local('Gilroy-Extrabold'),
-			 url('../fonts/gilroyextrabold.woff2') format('woff2'),
-			 url('../fonts/gilroyextrabold.woff') format('woff')
+	src: local("Gilroy Extrabold"), local("Gilroy-Extrabold"),
+			 url("../fonts/gilroyextrabold.woff2") format("woff2"),
+			 url("../fonts/gilroyextrabold.woff") format("woff")
 }
 
 
@@ -486,7 +486,7 @@ a{
 	color: var(--basic-white-transparent-300);
 }
 
-.search-input:focus + .search-button{
+.search-form:focus-within .search-button{
 	display: block;
 }
 
@@ -513,7 +513,10 @@ a{
 .login-wrapper{
 	display: flex;
 	flex-wrap: wrap;
-	gap: 20px;
+}
+
+.login-wrapper > a:not(:last-of-type){
+	margin-right: 20px;
 }
 
 .user-wrapper > a,
@@ -661,33 +664,20 @@ a{
 
 .slider-list{
 	position: relative;
-	counter-reset: slider-num;
 }
-
-/* .slider-list::before {
-	content: "";
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 114px;
-	background-color: var(--special-yellow-light);
-	z-index: -1;
-} */
 
 .slider-item{
 	display: none;
 	grid-template-columns: 1fr 1fr;
-  column-gap: 40px;
+	column-gap: 40px;
 	position: relative;
 }
 
 .slider-item::before{
-	content: "0" counter(slider-num);
-	counter-increment: slider-num;
+	content: attr(data-slider-num);
 	position: absolute;
 	top: -6px;
-  right: 47px;
+	right: 47px;
 	font-family: "Gilroy", Arial, sans-serif;
 	font-weight: 800;
 	font-size: 179px;
@@ -760,7 +750,6 @@ a{
 
 .slider-controls{
 	display: flex;
-	column-gap: 18px;
 	position: absolute;
 	right: 88px;
 	bottom: 157px;
@@ -776,6 +765,10 @@ a{
 	border: 1px solid var(--basic-black);
 	border-radius: 50%;
 	cursor: pointer;
+}
+
+.slider-controls button:not(:last-of-type){
+	margin-right: 18px;
 }
 
 .slider-controls button.current::before{
@@ -1053,8 +1046,11 @@ a{
 }
 
 .main-footer-user-wrapper .login-wrapper{
-	gap: 23px;
 	margin-right: 43px;
+}
+
+.main-footer-login-wrapper > a:not(:last-of-type) {
+    margin-right: 23px;
 }
 
 .main-footer-user-wrapper > a,
@@ -1405,6 +1401,10 @@ a{
 .filter-range-input::-webkit-outer-spin-button,
 .filter-range-input::-webkit-inner-spin-button{
   -webkit-appearance: none;
+}
+
+.filter-range-input[type='number'] {
+    -moz-appearance: textfield;
 }
 
 
