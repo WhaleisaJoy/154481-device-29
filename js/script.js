@@ -93,18 +93,46 @@ if(contactsFeedbackBtn)
 	});
 
 	modalFeedbackForm.addEventListener("submit", function(evt){
-		if(!modalFeedbackUsername.value || !modalFeedbackEmail.value || !modalFeedbackText.value){
+		if(!modalFeedbackUsername.value || !modalFeedbackEmail.value || !modalFeedbackText.value)
+		{
 			evt.preventDefault();
 
 			modalFeedback.classList.remove("modal-error");
 			modalFeedback.offsetWidth = modalFeedback.offsetWidth;
 			modalFeedback.classList.add("modal-error");
 		}
+
+		if(!modalFeedbackUsername.value)
+		{
+			modalFeedbackUsername.classList.add("incorrect");
+			resetInputField(modalFeedbackUsername);
+		}
+
+		if(!modalFeedbackEmail.value)
+		{
+			modalFeedbackEmail.classList.add("incorrect");
+			resetInputField(modalFeedbackEmail);
+		}
+
+		if(!modalFeedbackText.value)
+		{
+			modalFeedbackText.classList.add("incorrect");
+			resetInputField(modalFeedbackText);
+		}
 	});
+	
+	function resetInputField(elem)
+	{
+		elem.addEventListener("focus", function(evt)
+		{
+			elem.classList.remove("incorrect");
+		});
+	}
 }
 
 //Modal Close
-function closeModal(modal, modalClose){
+function closeModal(modal, modalClose)
+{
 	modalClose.addEventListener("click", function(evt)
 	{
 		evt.preventDefault();
